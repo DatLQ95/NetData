@@ -8,6 +8,15 @@ class NetData(Thread):
         self.stopped = event
         self.received_data = "./received_data.dat"
         self.sent_data = "./sent_data.dat"
+        self.media_received_data = "./media_received_data.dat"
+        self.media_sent_data = "./media_sent_data.dat"
+        self.shopping_received_data = "./shopping_received_data.dat"
+        self.shopping_sent_data = "./shopping_sent_data.dat"
+        self.serving_received_data = "./serving_received_data.dat"
+        self.serving_sent_data = "./serving_sent_data.dat"
+        self.searching_received_data = "./searching_received_data.dat"
+        self.searching_sent_data = "./searching_sent_data.dat"
+        
 
     def run(self):
         # run this for a lot of time
@@ -19,6 +28,26 @@ class NetData(Thread):
                     out.write(str(data["net.eno1"]["dimensions"]["received"]["value"]) + ', ')
                 with open(self.sent_data, 'a') as out:
                     out.write(str(data["net.eno1"]["dimensions"]["sent"]["value"]) + ', ')
+
+                with open(self.media_received_data, 'a') as out:
+                    out.write(str(data["cgroup_media_client.net_eth0"]["dimensions"]["received"]["value"]) + ', ')
+                with open(self.media_sent_data, 'a') as out:
+                    out.write(str(data["cgroup_media_client.net_eth0"]["dimensions"]["sent"]["value"]) + ', ')
+
+                with open(self.searching_received_data, 'a') as out:
+                    out.write(str(data["cgroup_search_client.net_eth0"]["dimensions"]["received"]["value"]) + ', ')
+                with open(self.searching_sent_data, 'a') as out:
+                    out.write(str(data["cgroup_search_client.net_eth0"]["dimensions"]["sent"]["value"]) + ', ')
+
+                with open(self.serving_received_data, 'a') as out:
+                    out.write(str(data["cgroup_serving_client.net_eth0"]["dimensions"]["received"]["value"]) + ', ')
+                with open(self.serving_sent_data, 'a') as out:
+                    out.write(str(data["cgroup_serving_client.net_eth0"]["dimensions"]["sent"]["value"]) + ', ')
+
+                with open(self.shopping_received_data, 'a') as out:
+                    out.write(str(data["cgroup_shopping_client.net_eth0"]["dimensions"]["received"]["value"]) + ', ')
+                with open(self.shopping_sent_data, 'a') as out:
+                    out.write(str(data["cgroup_shopping_client.net_eth0"]["dimensions"]["sent"]["value"]) + ', ')
                 
                 # data_get=[data["net.eno1"]["dimensions"]["received"]["value"], data["net.eno1"]["dimensions"]["sent"]["value"]]
                 print(data["net.eno1"]["dimensions"]["received"]["value"])
